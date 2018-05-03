@@ -19,16 +19,18 @@
 </template>
 
 <script>
-    import store from '../vuex/store'
 
     export default{
         name:'heroes',
-        store,
         data(){
             return {
                 heroName:'',
-                heroes : store.state.heroes,
             }
+        },
+        computed:{
+          heroes(){
+            return this.$store.state.heroes
+          }
         },
         methods:{
             //此处后续需要使用 vuex 重写，此时仅仅象征性的添加一下^_^
