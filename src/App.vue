@@ -2,8 +2,8 @@
     <div>
         <h1>{{title}}</h1>
         <nav>
-          <router-link to="/heroes"></router-link>
-          <router-link to="/dashboard"></router-link>
+          <router-link to="/heroes">Heroes</router-link>
+          <router-link to="/dashboard">Dashboard</router-link>
         </nav>
         <router-view></router-view>
     </div>
@@ -24,5 +24,39 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss" scoped>
+  h1 {
+    font-size: 1.2em;
+    color:#999;
+    margin-bottom: 0;
+  }
+  h2 {
+    font-size: 2em;
+    margin-top: 0;
+    padding-top: 0;
+  }
+  nav {
+     a {
+       padding: 5px 10px;
+       text-decoration: none;
+       margin-top: 10px;
+       display: inline-block;
+       background-color: #eee;
+       border-radius: 4px;
+
+       &:visited,
+       &:link {
+         color:#607d8b;
+       }
+
+       &:hover {
+         color: #039be5;
+         background-color: #cfd8dc;
+       }
+
+       &:active {
+         color: #039be5;
+       }
+     }
+  }
 </style>
