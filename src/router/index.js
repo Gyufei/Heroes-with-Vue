@@ -7,6 +7,7 @@ import dashboard from '../dashboard/dashboard'
 Vue.use(VueRouter)
 
 const routes = [
+  {path:'',component: heroes},
   {path: '/heroes', component: heroes},
   {path: '/dashboard', component: dashboard}
 ]

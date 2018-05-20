@@ -1,11 +1,17 @@
 <template>
-    <div>
+    <div class="container">
+      <div class="page-header">
         <h1>{{title}}</h1>
-        <nav>
+      </div>
+      <ul class="nav nav-pills">
+        <li>
           <router-link to="/heroes">Heroes</router-link>
+        </li>
+        <li>
           <router-link to="/dashboard">Dashboard</router-link>
-        </nav>
-        <router-view></router-view>
+        </li>
+      </ul>
+      <router-view></router-view>
     </div>
 </template>
 
@@ -20,43 +26,9 @@ export default {
         title:"Tour of Heroes"
     }
   },
-    components:{ heroes,dashboard }
+  components:{ heroes,dashboard }
 }
 </script>
 
 <style lang="scss" scoped>
-  h1 {
-    font-size: 1.2em;
-    color:#999;
-    margin-bottom: 0;
-  }
-  h2 {
-    font-size: 2em;
-    margin-top: 0;
-    padding-top: 0;
-  }
-  nav {
-     a {
-       padding: 5px 10px;
-       text-decoration: none;
-       margin-top: 10px;
-       display: inline-block;
-       background-color: #eee;
-       border-radius: 4px;
-
-       &:visited,
-       &:link {
-         color:#607d8b;
-       }
-
-       &:hover {
-         color: #039be5;
-         background-color: #cfd8dc;
-       }
-
-       &:active {
-         color: #039be5;
-       }
-     }
-  }
 </style>

@@ -18,6 +18,26 @@ const state = {
     ],
 }
 
+const actions = {
+  addHero ({ commit }, preload){
+    commit('ADDHERO', preload)
+  },
+  deleteHero ({ commit }, preload){
+    commit('DELETEHERO',preload)
+  }
+}
+
+const mutations = {
+  ADDHERO ({ heroes }, { newHero }) {
+    heroes.push(newHero)
+  },
+  DELETEHERO (state, { id }) {
+    state.heroes = state.heroes.filter((item) => item.id !== id)
+  }
+}
+
 export default new Vuex.Store({
     state,
+    mutations,
+    actions
 });
