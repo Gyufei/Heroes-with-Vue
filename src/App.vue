@@ -16,8 +16,6 @@
 </template>
 
 <script>
-import heroes from  './heroes/heroes'
-import dashboard from './dashboard/dashboard'
 
 export default {
   name: 'app',
@@ -26,7 +24,6 @@ export default {
         title:"Tour of Heroes"
     }
   },
-  components:{ heroes,dashboard }
 }
 </script>
 

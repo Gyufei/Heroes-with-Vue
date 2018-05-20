@@ -13,7 +13,7 @@
 
         <ul class="list-group hero-list">
             <li class="list-group-item" v-for="hero of heroes" :key="hero.id">
-              <a>
+              <a @click="goToDetail(hero.id)">
                 <span class="label label-warning">{{hero.id}} </span>
                 <span class="hero-name"> {{hero.name}} </span>
               </a>
@@ -38,7 +38,7 @@
           }
         },
         methods:{
-            addHero:function(){
+            addHero (){
                 if (this.heroName.length === 0) return 
                 let newId = this.heroes[this.heroes.length-1]['id']
                 let newHero = { id: ++newId, name: this.heroName }
@@ -46,8 +46,11 @@
                 this.heroName = ''
                 this.$refs.nameInput.focus()
             },
-            deleteHero:function(hero){
+            deleteHero (hero){
               this.$store.dispatch('deleteHero',hero)
+            },
+            goToDetail (id) {
+              this.$router.push({name: 'hero', params:{ id }})
             }
         }
     }

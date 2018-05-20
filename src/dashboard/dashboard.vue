@@ -2,7 +2,9 @@
   <div class="container">
     <h3>Top Heroes</h3>
     <div class="row">
-      <a class="col-md-2 text-center bg-primary" v-for="hero of topHeroes">
+      <a class="col-md-2 text-center bg-primary"
+        v-for="hero of topHeroes" 
+        @click="goToDetail(hero)">
         <div>
           <span>{{hero.name}}</span>
         </div>
@@ -22,6 +24,11 @@
     computed:{
       topHeroes(){
         return this.$store.state.heroes.slice(0,4)
+      }
+    },
+    methods:{
+      goToDetail ({ id }) {
+        this.$router.push({name: 'hero', params:{ id }})
       }
     }
   })
