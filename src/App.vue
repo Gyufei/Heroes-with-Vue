@@ -12,10 +12,12 @@
         </li>
       </ul>
       <router-view></router-view>
+      <app-message></app-message>
     </div>
 </template>
 
 <script>
+import appMessage from './message/message'
 
 export default {
   name: 'app',
@@ -24,8 +26,23 @@ export default {
         title:"Tour of Heroes"
     }
   },
+  //向所有子组件提供message相关方法
+  provide () {
+    return {
+      addMessage (msg) {
+        msg.time = (new Date()).toLocaleString()
+        this.$store.dispatch('addMessage', msg)
+      }
+    }
+  },
+  components: {
+    appMessage,
+  }
 }
 </script>
 
 <style lang="scss" scoped>
+a{
+  color:aaa
+}
 </style>

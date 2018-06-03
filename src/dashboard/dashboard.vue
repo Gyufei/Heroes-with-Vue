@@ -14,24 +14,25 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 
-  export default({
-    name:'dashboard',
-    data(){
-      return {
-      }
-    },
-    computed:{
-      topHeroes(){
-        return this.$store.state.heroes.slice(0,4)
-      }
-    },
-    methods:{
-      goToDetail ({ id }) {
-        this.$router.push({name: 'hero', params:{ id }})
-      }
+export default({
+  name:'dashboard',
+  data(){
+    return {
     }
-  })
+  },
+  computed:{
+    ...mapGetters([
+        'topHeroes'
+    ])
+  },
+  methods:{
+    goToDetail ({ id }) {
+      this.$router.push({name: 'hero', params:{ id }})
+    }
+  }
+})
 </script>
 
 <style lang="scss" scoped>

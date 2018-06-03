@@ -7,7 +7,7 @@
             <label for="">Hero name:
               <input type="text" ref="nameInput" v-model.trim="heroName">
             </label>
-            <button class="btn btn-primary btn-sm" @click="addHero">add</button>
+            <button class="btn btn-primary btn-sm" @click="addNewHero">add</button>
           </div>
         </div>
 
@@ -24,36 +24,54 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
 
-    export default{
-        name:'heroes',
-        data(){
-            return {
-                heroName:'',
-            }
+export default{
+    name:'heroes',
+    inject: ['addMessage'],
+    data(){
+        return {
+            heroName:'',
+        }
+    },
+    computed:{
+      ...mapState({
+        heroes: state => state.hero.heroes
+      }
+      )
+    },
+    methods:{
+        ...mapActions([
+            'addHero',
+        ]),
+        addNewHero (){
+            if (this.heroName.length === 0) return 
+            let newId = this.heroes[this.heroes.length-1]['id']
+            let newHero = { id: ++newId, name: this.heroName }
+            this.addHero({ newHero }).then(res => {
+              const msg =  {
+                detail: `英雄加入，${newId}号 ${newHero.name}!!`,
+                statu: 'success'
+              }
+              this.addMessage(msg)
+              this.heroName = ''
+              this.$refs.nameInput.focus()
+            })
         },
-        computed:{
-          heroes(){
-            return this.$store.state.heroes
-          }
-        },
-        methods:{
-            addHero (){
-                if (this.heroName.length === 0) return 
-                let newId = this.heroes[this.heroes.length-1]['id']
-                let newHero = { id: ++newId, name: this.heroName }
-                this.$store.dispatch('addHero',{ newHero })
-                this.heroName = ''
-                this.$refs.nameInput.focus()
-            },
-            deleteHero (hero){
-              this.$store.dispatch('deleteHero',hero)
-            },
-            goToDetail (id) {
-              this.$router.push({name: 'hero', params:{ id }})
+        deleteHero (hero){
+          this.$store.dispatch('deleteHero',hero).then(res => {
+            const msg =  {
+              detail: `${hero.id}号英雄 ${hero.name} 离开`,
+              statu: 'warning'
             }
+            this.addMessage(msg)
+          })
+        },
+        goToDetail (id) {
+          this.$router.push({name: 'hero', params:{ id }})
         }
     }
+}
 </script>
 
 <style lang="scss" scoped>
