@@ -19,9 +19,9 @@
     <div v-else class="msg-btn-con">
       <button 
         class="btn btn-info msg-btn"
-        @click="handleToggle"
-        >
-        msg</button>
+        @click="handleToggle">
+        <i class="glyphicon glyphicon-comment" />
+      </button>
     </div>
   </div>
 </template>
@@ -62,7 +62,6 @@ export default {
   width: 250px;
 
   .panel-heading {
-    border: 1px solid #ff4273;
     background-color: #1fffff;
 
     .close-icon {
@@ -73,11 +72,16 @@ export default {
 .msg-btn-con {
   position: fixed;
   top: 20%;
-  right: -5px;
+  right: 5%;
+
   .msg-btn {
     height: 40px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
+    width: 40px;
+
+    border-radius: 50%;
+    margin: 15px 30px;
+    box-shadow: 0 0 0 4px rgba(255,255,255,1);
+    cursor: pointer;
   }
 }
 </style>

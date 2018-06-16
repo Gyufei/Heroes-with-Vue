@@ -28,7 +28,6 @@ import { mapState, mapActions } from 'vuex'
 
 export default{
     name:'heroes',
-    inject: ['addMessage'],
     data(){
         return {
             heroName:'',
@@ -46,26 +45,15 @@ export default{
         ]),
         addNewHero (){
             if (this.heroName.length === 0) return 
-            let newId = this.heroes[this.heroes.length-1]['id']
+            let newId = this.heroes.length !== 0 ? this.heroes[this.heroes.length-1]['id'] : 10
             let newHero = { id: ++newId, name: this.heroName }
-            this.addHero({ newHero }).then(res => {
-              const msg =  {
-                detail: `英雄加入，${newId}号 ${newHero.name}!!`,
-                statu: 'success'
-              }
-              this.addMessage(msg)
+            this.addHero(newHero).then(res => {
               this.heroName = ''
               this.$refs.nameInput.focus()
             })
         },
         deleteHero (hero){
-          this.$store.dispatch('deleteHero',hero).then(res => {
-            const msg =  {
-              detail: `${hero.id}号英雄 ${hero.name} 离开`,
-              statu: 'warning'
-            }
-            this.addMessage(msg)
-          })
+          this.$store.dispatch('deleteHero',hero)
         },
         goToDetail (id) {
           this.$router.push({name: 'hero', params:{ id }})
@@ -85,7 +73,7 @@ a{
   margin-top:10px;
 }
 .hero-list{
-  width:20%;
+  width:30%;
 }
 .hero-name{
   margin-left:10px;

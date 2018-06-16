@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <h1>{{ hero.name }} Detail</h1>
+    <h1>{{ oldHero.name }} Detail</h1>
     <div>
       <div class="form-group">
         <label>id:</label>
@@ -28,7 +28,6 @@ import { mapActions } from 'vuex'
 
 export default{
   name:'hero',
-  inject: ['addMessage'],
   data(){
     return {
       hero: {},
@@ -59,11 +58,6 @@ export default{
     },
     handleSave () {
       this.updateHero(this.hero).then(res => {
-        const msg =  {
-          detail: `${this.hero.id}号英雄 ${this.oldHero.name} 变身为 ${this.hero.name}!!`,
-          statu: 'info'
-        }
-        this.addMessage(msg)
         this.handleBack()
       })
     }

@@ -33,7 +33,7 @@ const actions = {
 }
 
 const mutations = {
-  ADDHERO ({ heroes }, { newHero }) {
+  ADDHERO ({ heroes }, newHero) {
     heroes.push(newHero)
   },
   DELETEHERO (state, { id }) {
