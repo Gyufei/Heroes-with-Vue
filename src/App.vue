@@ -26,15 +26,6 @@ export default {
         title:"Tour of Heroes"
     }
   },
-  //向所有子组件提供message相关方法
-  provide () {
-    return {
-      addMessage (msg) {
-        msg.time = (new Date()).toLocaleString()
-        this.$store.dispatch('addMessage', msg)
-      }
-    }
-  },
   components: {
     appMessage,
   }

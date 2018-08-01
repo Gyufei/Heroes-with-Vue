@@ -1,6 +1,5 @@
 export default function createMessagePlugin () {
   return store => {
-    // const prevState = Object.assign({}, store.state)
     const prevState = JSON.parse(JSON.stringify(store.state))
     store.subscribe((mutations, state) => {
       const {type, payload} = mutations

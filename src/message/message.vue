@@ -1,6 +1,7 @@
 <template>
   <div class="msg">
     <div class="panel" v-if="isShow">
+
       <div class="panel-heading">
         <div class="panel-title">
           MESSAGE
@@ -9,12 +10,19 @@
             class="glyphicon glyphicon-remove close-icon pull-right"></span>
         </div>
       </div>
-      <ul class="list-group">
+
+      <ul 
+        class="list-group" 
+        v-if="messages.length">
         <li 
           class="list-group-item"
           :class="getClass(msg.statu)"
           v-for="msg in messages">{{ msg.detail }}</li>
       </ul>
+
+      <div v-else class="alert alert-success">
+        <span>暂无消息</span>
+      </div>
     </div>
     <div v-else class="msg-btn-con">
       <button 
